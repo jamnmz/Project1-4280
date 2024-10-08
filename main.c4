@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include "scanner.h"
+
+
+int main(int argc, char* argv[])
+{
+
+        char nodeValue;
+        char input[20];
+        char choice;
+        char filename[20];
+        FILE *fp;
+        
+        int k = 0;
+        //code to open file if one is presented in arguments
+        if(argc > 1)
+        {
+            //strcpy(filename, argv[1]);
+            fp = fopen(argv[1], "r");
+            //error message for failure to open file
+            if (fp == NULL)
+            {
+                printf("Error opening file: %s\n", argv[1]);
+                return 1;
+            }
+            char line[256];
+            while(fgets(line, sizeof(line), fp) != NULL)
+            {
+                scanf("%s", input);
+                printf("i");
+                int j = 0;
+                for(j = 0; j < (strlen(input)); j++)
+                {
+                    printf("%d :%c\n", j+1, input[j]);
+                }
+            }
+            fclose(fp);
+        }
+        //if no file is present, prompt for keyboard input
+        else
+        {
+                // User input loop to insert nodes into the binary tree
+                do
+                {
+                    // Prompt user for input
+                    printf("Input a value to insert into the binary tree: \n");
+                    scanf("%s", input);
+
+                    //run scanner class on input string
+                    scanner(input, k);
+                    k++;
+
+                        
+                } while (input[0] != '`');
+        }
+
+
+        // Return 0 to indicate successful execution
+        return 0;
+}
